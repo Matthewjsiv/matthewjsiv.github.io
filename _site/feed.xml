@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-31T23:29:14-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Matthew Sivaprakasam</title><subtitle>Matthew Sivaprakasam Personal Webpage
+</subtitle><author><name>Matthew Sivaprakasam</name><email>msivapra@andrew.cmu.edu</email></author><entry><title type="html">Summary of Current Research</title><link href="http://localhost:4000/projects/summary.html" rel="alternate" type="text/html" title="Summary of Current Research" /><published>2018-06-06T00:00:00-04:00</published><updated>2018-06-06T00:00:00-04:00</updated><id>http://localhost:4000/projects/summary</id><content type="html" xml:base="http://localhost:4000/projects/summary.html"><![CDATA[<!-- *  Perception and high-level control system for drone to detect, track, and follow a person with onboard camera) -->
+<!-- *  Uses Google's Posenet and hand-designed subject-visibility metrics -->
+
+<!-- <p> preview excerpt </p> -->
+<!-- - Bullet -->
+
+<!--more-->
+
+<h1 id="autonomous-off-road-driving">Autonomous Off-Road Driving</h1>
+<p><strong>I will continue to update this as I develop more cohesive results and figures</strong></p>
+
+<p>My research for my Master’s thesis centers around the following concepts under the context of off-road driving:</p>
+<ul>
+  <li><strong>Self-supervised learning</strong> - leveraging cues intrinsic to collected data (e.g. expert demonstration, proprioceptive cues) rather than expensive manual labels</li>
+  <li><strong>Online adaptation</strong> - designing an autonomous system that can adapt its behavior as it experiences previously-unseen terrain</li>
+  <li><strong>Multi-modal representation learning</strong> - using different sensors simultaneously to perceive geometric, semantic, and other information in the environment</li>
+</ul>
+
+<p>Recently, I’ve been exploring how to use generalized features from visual foundation models to influence adaptive behaviors. The strong feature extractors allow us to perform terrain segmentation and uncertainty detection without labelling any of our own data. Coupling this with proprioceptive information such as IMU data allows us to quickly learn about the difficulty/roughness of terrain we haven’t seen before.</p>
+
+<figure>
+<img src="/assets/media/summary/segmentation.png" alt="Overview flowchart" style="width: 70%; display: block; margin-left: auto; margin-right: auto" />  
+<figcaption style="text-align: center"> Following an approach inspired by <a target="https://anyloc.github.io/" href="link_here">AnyLoc</a>, we can obtain rough terrain segmentation without any labels. Additionally, we can detect areas of uncertainty (for example the circled puddle that has not been assigned a color). </figcaption>
+</figure>
+
+<figure>
+<img src="/assets/media/summary/speed.png" alt="Overview flowchart" style="width: 70%; display: block; margin-left: auto; margin-right: auto" />  
+<figcaption style="text-align: center">In real-time we can learn what speeds are appropriate for different types of terrain. Lighter areas correspond to faster speeds.</figcaption>
+</figure>
+
+<h1 id="autonomous-high-speed-racing">Autonomous High-Speed Racing</h1>
+
+<p>I’ve been a member of the MIT-PITT-RW racing team since 2020, where I’ve been working on perception algorithms and serving as a mentor to younger students.</p>
+
+<p>One effort I’ve been working on recently is reducing the number of manual labels needed to train our object detection networks. I’ve set up a pipeline that uses the few manual labels that we have to generate a “bank” of example pointclouds of the enemy car at different ranges. We then use the GPS information from the other car (we have access to other teams’ data post-race) to act as a guess to initializ ICP between cars in the car bank and a new unlabeled pointcloud. The result is an automatic labelling pipeline.</p>
+
+<figure>
+<img src="/assets/media/summary/extract.png" alt="Overview flowchart" style="width: 70%; display: block; margin-left: auto; margin-right: auto" />  
+<figcaption style="text-align: center">Using the known location of the car from hand labels, we generate a bank of car point clouds.</figcaption>
+</figure>
+
+<figure>
+<img src="/assets/media/summary/refine.png" alt="Overview flowchart" style="width: 70%; display: block; margin-left: auto; margin-right: auto" />  
+<figcaption style="text-align: center">We use gps information from the other car to initialize ICP to get accurate labels automatically.</figcaption>
+</figure>
+
+<!-- Labeled data for off-road terrain is scarce, and acquiring more is expensive, so our group maintains a heavy emphasis on algorithms that don't require any manual labeling and instead leverage cues that are already present in the collected data, such as expert demonstrations or proprioceptive information. Additionally, off-road terrain is extremely diverse. While our testing site is expansive, any other area that we test in will be significantly different -->]]></content><author><name>Matthew Sivaprakasam</name><email>msivapra@andrew.cmu.edu</email></author><category term="Research" /><summary type="html"><![CDATA[High-level summary of my current research in autonomous off-road driving and high-speed racing]]></summary></entry><entry><title type="html">Metadata Utils</title><link href="http://localhost:4000/projects/metadata_utils.html" rel="alternate" type="text/html" title="Metadata Utils" /><published>2018-06-05T00:00:00-04:00</published><updated>2018-06-05T00:00:00-04:00</updated><id>http://localhost:4000/projects/metadata_utils</id><content type="html" xml:base="http://localhost:4000/projects/metadata_utils.html"><![CDATA[<!-- *  Perception and high-level control system for drone to detect, track, and follow a person with onboard camera) -->
+<!-- *  Uses Google's Posenet and hand-designed subject-visibility metrics -->
+
+<!-- <p> preview excerpt </p> -->
+<!-- - Bullet -->
+
+<!--more-->
+
+<p>For running our off-road autonomy experiments, and even for data collection, we have several modules that need to be started. I came up with a tmux-based framework that allows you to pre-define an experiment beforehand, and run it with a single command once you’re out in the field. It also maintains metadata that makes it easy to go back and find experiments based on various criteria. It’s highly configurable, meaning that you can modify just a couple config files to integrate it into your own field-testing process.</p>
+
+<p>At a high level it offers the following features:</p>
+<ul>
+  <li>Easy launching of experiments</li>
+  <li>A metadata system that is useful for organization and dataset creation</li>
+  <li>A “topics monitor” that makes sure all your information is being received at the expected rotate</li>
+  <li>A series of tools to organize the data</li>
+</ul>
+
+<p>Our code can be found <a href="https://github.com/Matthewjsiv/metadata_utils" target="_blank"> <b> here</b></a>.</p>
+
+<p><img src="/assets/media/metadata/rotated-metadata_utils.png" alt="" width="80%" /></p>]]></content><author><name>Matthew Sivaprakasam</name><email>msivapra@andrew.cmu.edu</email></author><category term="Class" /><summary type="html"><![CDATA[Framework to automate the startup of modules for robot experiments/data-collectionMaintains metadata for easy data splitting/filtering to facilitate dataset creationc]]></summary></entry><entry><title type="html">Towards Heterogeneous Multi-Agent SLAM for Cooperative Map Completion</title><link href="http://localhost:4000/projects/slam.html" rel="alternate" type="text/html" title="Towards Heterogeneous Multi-Agent SLAM for Cooperative Map Completion" /><published>2018-06-04T00:00:00-04:00</published><updated>2018-06-04T00:00:00-04:00</updated><id>http://localhost:4000/projects/SLAM</id><content type="html" xml:base="http://localhost:4000/projects/slam.html"><![CDATA[<!-- *  Perception and high-level control system for drone to detect, track, and follow a person with onboard camera) -->
+<!-- *  Uses Google's Posenet and hand-designed subject-visibility metrics -->
+
+<!-- <p> preview excerpt </p> -->
+<!-- - Bullet -->
+
+<!--more-->
+
+<p>Many downstream tasks in robotics rely on having a prior map, such as path planning, intelligent obstacle avoidance, or computationally expensive inspection of an environment that can’t be done online. To create maps efficiently, individual observations from multiple robots can be aggregated into one large, dense map. However, it can be difficult to align maps from different robots and, when discrepancies between maps arise, determine which is correct. We propose a robot-agnostic algorithm to generate high fidelity point cloud maps that incorporates automatic registration and reconciles disparities by generating confidence maps for each robot. We validate our algorithm by running it in real time with maps generated by a ground and aerial vehicle.</p>
+
+<p>The end result is a framework that allows us to insert dense pointclouds from a ground vehicle into a sparser map generated by an overhead drone.
+Our code is available <a href="https://github.com/Matthewjsiv/mushr_slam" target="_blank"> <b> here</b></a>.</p>
+
+<p>The full report for my SLAM class is available at the bottom but the overall flow of the project is as follows:</p>
+
+<h1 id="approach">Approach</h1>
+<h2 id="hardware">Hardware</h2>
+<p>For simplicity, we emulate a drone by recording a pointcloud from an iPhone lidar pointed downwards:
+<img src="/assets/media/SLAM/phone.png" alt="" width="80%" /></p>
+
+<p>For our ground vehicle we originally planned to use a realsense on a Mushr robot as shown below, but ended up using the iPhone lidar again except from a low angle and pointed forward.
+<img src="/assets/media/SLAM/mushr.png" alt="" width="80%" /></p>
+
+<h2 id="descriptor-matching">Descriptor Matching</h2>
+<h3 id="offline-descriptor-generation">Offline Descriptor Generation</h3>
+<p>Offline, we generate descriptors for 3x3m patches of the aerial map, where the descriptor is computed by binning the patch by height and computing information such as proportion, standard deviation, and color for each bin.</p>
+
+<p><img src="/assets/media/SLAM/aerial.png" alt="" width="80%" /></p>
+
+<h3 id="online-descriptor-matching">Online Descriptor Matching</h3>
+<p>Online, we observe a 3x3m patch of pointcloud collected from the ground vehicle and compute its descriptor. We find the closest descriptor from the aerial map and use this as an initial guess as to where the ground robot is in the aerial map frame. We then use ICP to refine this guess and register the vehicle cloud into the drone cloud. This results in a much denser map, but introduces some discrepancies, as both the drone and vehicle have inaccuracies due to occlusions.</p>
+
+<p><img src="/assets/media/SLAM/online_1.png" alt="" width="80%" />
+<img src="/assets/media/SLAM/online_2.png" alt="" width="80%" /></p>
+
+<h2 id="discrepancy-resolution">Discrepancy Resolution</h2>
+<p>As a heuristic, we assume that a vehicle can be more confident about points with surface normals parallel to the viewpoint of the vehicle. For example, the drone can be more confident about tabletops since the surface is perpendicular to its top-down view. To clean up the map, we detect discrepant points and then use this heuristic to determine which viewpoint is more likely to be correct</p>
+
+<p><img src="/assets/media/SLAM/discrepancy_2.png" alt="" width="80%" /></p>
+
+<h1 id="results">Results</h1>
+
+<p>By fusing the two maps we get much denser maps. As you can see below, there is a significant difference in density between areas where we get coverage from both vs just the aerial map alone.</p>
+
+<p><img src="/assets/media/SLAM/result1.png" alt="" width="45%" />
+<img src="/assets/media/SLAM/result2.png" alt="" width="45%" /></p>
+
+<h1 id="report">Report</h1>
+<object data="/assets/media/SLAM/SLAM_Final_Report.pdf" width="1000" height="600" type="application/pdf"></object>]]></content><author><name>Matthew Sivaprakasam</name><email>msivapra@andrew.cmu.edu</email></author><category term="Class" /><summary type="html"><![CDATA[Initial efforts towards lidar scans from multiple perspectives (drone+car) for dense map creation and localizationIntelligently detect and resolve discrepancies between two perspectives.]]></summary></entry><entry><title type="html">Expressive Long-Horizon Planning in Off-Road Terrain via Diffusion Models</title><link href="http://localhost:4000/projects/diffusion.html" rel="alternate" type="text/html" title="Expressive Long-Horizon Planning in Off-Road Terrain via Diffusion Models" /><published>2018-06-04T00:00:00-04:00</published><updated>2018-06-04T00:00:00-04:00</updated><id>http://localhost:4000/projects/diffusion</id><content type="html" xml:base="http://localhost:4000/projects/diffusion.html"><![CDATA[<!-- *  Perception and high-level control system for drone to detect, track, and follow a person with onboard camera) -->
+<!-- *  Uses Google's Posenet and hand-designed subject-visibility metrics -->
+
+<!-- <p> preview excerpt </p> -->
+<!-- - Bullet -->
+
+<!--more-->
+
+<p>Navigation in off-road environments is challenging due to their uneven and high-risk terrains. It’s vital to reason over these complex terrains to avoid unsafe or unrecoverable behaviors. We present a diffusion model approach conditioned on local costmaps to generate long-horizon plans for off-road driving. We tested our approach using both pure gaussian noise as well as smart seeding and observe the differences in the outputted trajectories. We evaluate our method through measuring the average loss over the training period and observed that the random-seeding approach achieves convergence and can diffuse viable trajectories.</p>
+
+<p>The two key insights here are:</p>
+<ul>
+  <li>Replacing demonstration data with “demonstrations” generated by querying a trajectory library against a costmap generated via inverse reinforcement learning.</li>
+  <li>“Smart-seeding” the diffusion initializaion, which requires a custom noise scheduler.</li>
+</ul>
+
+<p>Currently, the smart-seeding approach seems to not converge or perform well, likely due to a implementation error or issues with the reverse diffusion. Our code can be found <a href="https://github.com/Matthewjsiv/path_diffusion" target="_blank"> <b> here</b></a>.</p>
+
+<h1 id="motivation">Motivation</h1>
+
+<p><img src="/assets/media/diffusion/atv.png" alt="" width="80%" /></p>
+
+<ul>
+  <li>Navigating in off-road environments is challenging:
+    <ul>
+      <li>Tough terrain - ditches, mud, foliage, puddles</li>
+      <li>Elevation challenges - slope and height irregularities</li>
+    </ul>
+  </li>
+  <li>Sampling-based local planners are popular:
+    <ul>
+      <li>We use MPPI - we roll out random actions, evaluate them on a costmap, and choose the best trajectory</li>
+    </ul>
+  </li>
+  <li>It is difficult to do dense sampling over long-horizons
+    <ul>
+      <li>Lots of trajectories will be in high-cost regions (imagine you’re on a narrow trail and have to evaluate a bunch of samples that crash into the trees on the side)</li>
+      <li>This esults in a lot of wasted compute</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>What if we could <em>learn</em> the best distributions to sample paths from given current environment conditions?</strong></p>
+
+<h1 id="approach">Approach</h1>
+
+<h2 id="architecture">Architecture</h2>
+<p>More details coming soon after we work out some bugs but, at a high level, we follow an approach similar to <a href="https://github.com/robodhruv/visualnav-transformer" target="_blank"> <b> NoMaD</b></a> but without the goal-masking/conditioning element. Additionally, we condition on costmaps instead of FPV RGB images.
+<img src="/assets/media/diffusion_preview.png" alt="" width="80%" /></p>
+
+<h2 id="initial-results">Initial Results</h2>
+<p>We show that we can diffuse reasonably feasible trajectories conditioned on the costmaps.</p>
+
+<p><img src="/assets/media/diffusion/result1.png" alt="" width="80%" /></p>
+
+<p>In some cases, even intuitive multi-distribution paths are predicted. For example, the result at a fork in the road is shown below.</p>
+
+<p><img src="/assets/media/diffusion/result2.png" alt="" width="80%" /></p>
+
+<h1 id="report">Report</h1>
+<object data="/assets/media/diffusion/Robot_Learning_Final_Report.pdf" width="1000" height="600" type="application/pdf"></object>]]></content><author><name>Matthew Sivaprakasam</name><email>msivapra@andrew.cmu.edu</email></author><category term="Class" /><summary type="html"><![CDATA[(Ongoing) Exploring replacing our MPPI planner with a diffusion modelPredict multi-modal path distributions efficiently.]]></summary></entry><entry><title type="html">Budget Autonomous Aerial Cinematography</title><link href="http://localhost:4000/projects/drone.html" rel="alternate" type="text/html" title="Budget Autonomous Aerial Cinematography" /><published>2018-06-03T00:00:00-04:00</published><updated>2018-06-03T00:00:00-04:00</updated><id>http://localhost:4000/projects/drone</id><content type="html" xml:base="http://localhost:4000/projects/drone.html"><![CDATA[<!-- *  Perception and high-level control system for drone to detect, track, and follow a person with onboard camera) -->
+<!-- *  Uses Google's Posenet and hand-designed subject-visibility metrics -->
+
+<!-- <p> preview excerpt </p> -->
+<!-- - Bullet -->
+
+<!--more-->
+
+<p>I wrote a python script for the Tello drone so it can track and follow you in order to keep you in the frame. It uses a python port of the posenet model I use in my pose-evaluator demo (which you can see if you scroll down) to
+	 predict key points on your body. It then uses the relationships between the different points to calculate an error value which it feeds into basic PID controllers (one for each type of movement). This allows it to rotate, move up/down, and move forward/backward as it follows you.
+	 It clearly isn’t perfect yet, but I am currently working on expanding it by fine tuning the PID and implementing other new features such as different tracking behaviors, as well as rebuilding it using ROS.
+ You can see the code and more info <a href="https://github.com/Matthewjsiv/Person-Tracking-Tello-Drone" target="_blank"> <b>here</b></a>.</p>
+
+<p>Note: if the embedded video isn’t working, press the pop-out button and it’ll open in a new tab.</p>
+
+<iframe src="https://drive.google.com/file/d/1kkfuJw1n19nCvy9EKhX8xWWBnXIxVVka/preview" width="40%" height="300" class="w3-round w3-card-4" allowfullscreen=""></iframe>
+<iframe src="https://drive.google.com/file/d/1Wn6j_Ogm7gcUWproWoKgXKs3SuYr58HH/preview" width="40%" height="300" class="w3-round w3-card-4" allowfullscreen=""></iframe>]]></content><author><name>Matthew Sivaprakasam</name><email>msivapra@andrew.cmu.edu</email></author><category term="Personal" /><summary type="html"><![CDATA[Perception and high-level control system for drone to detect, track, and follow a person with onboard camera)Uses Google's Posenet and hand-designed subject-visibility metrics]]></summary></entry><entry><title type="html">HD 3D Map Generation for Autonomous Racing</title><link href="http://localhost:4000/projects/map.html" rel="alternate" type="text/html" title="HD 3D Map Generation for Autonomous Racing" /><published>2018-06-02T00:00:00-04:00</published><updated>2018-06-02T00:00:00-04:00</updated><id>http://localhost:4000/projects/grad_ai</id><content type="html" xml:base="http://localhost:4000/projects/map.html"><![CDATA[<!-- *  Perception and high-level control system for drone to detect, track, and follow a person with onboard camera) -->
+<!-- *  Uses Google's Posenet and hand-designed subject-visibility metrics -->
+
+<!-- <p> preview excerpt </p> -->
+<!-- - Bullet -->
+
+<!--more-->
+
+<p>Autonomous motorsports aim to replicate
+the human racecar driver with software and sensors.
+As in traditional motorsports, Autonomous Racing Ve-
+hicles (ARVs) are pushed to their handling limits in
+multi-agent scenarios at extremely high (≥ 150mph)
+speeds. This Operational Design Domain (ODD) presents
+unique challenges across the autonomy stack. Standard
+autonomous vehicles (AVs) rely on High Definition (HD)
+Maps, that provide information such as lanes, right of
+way information, and more, to simplify many problems.
+For ARVs, an HD map includes information about
+the race track, including its boundaries and banking,
+which the autonomy software can exploit to improve
+performance. In this project, we created a pipeline to
+take in noisy sensor LiDAR data and GPS information
+in order to create an HD map for an ARV, automatically
+building a globally registered pointcloud and extracting
+the relevant information.</p>
+
+<p>Poster and paper shown below:</p>
+
+<object data="/assets/media/grad_ai/Grad_AI_Poster.pdf" width="1000" height="600" type="application/pdf"></object>
+<object data="/assets/media/grad_ai/Grad_AI_Project_Report.pdf" width="1000" height="600" type="application/pdf"></object>]]></content><author><name>Matthew Sivaprakasam</name><email>msivapra@andrew.cmu.edu</email></author><category term="Class" /><summary type="html"><![CDATA[Generated a high-fidelity pointcloud of the Monza F1 Circuit via ICP-based pipeline that takes in raw lidar scans and noisy GPS information.Compute map features such as track boundaries, bank angles.]]></summary></entry><entry><title type="html">Targetless Lidar Calibration</title><link href="http://localhost:4000/projects/calibration.html" rel="alternate" type="text/html" title="Targetless Lidar Calibration" /><published>2018-06-01T00:00:00-04:00</published><updated>2018-06-01T00:00:00-04:00</updated><id>http://localhost:4000/projects/lidar_cal</id><content type="html" xml:base="http://localhost:4000/projects/calibration.html"><![CDATA[<!-- *  Perception and high-level control system for drone to detect, track, and follow a person with onboard camera) -->
+<!-- *  Uses Google's Posenet and hand-designed subject-visibility metrics -->
+
+<!-- <p> preview excerpt </p> -->
+<!-- - Bullet -->
+
+<!--more-->
+
+<p>When working with multiple sensors that provide spatial information, one needs
+good calibration between them so that their outputs can be aligned in one common
+frame. One common challenge is calibrating the extrinsics between two lidar sensors.
+Doing this process manually is tedious, error-prone, and sometimes involves extra
+materials. Instead, this can be done automatically by taking advantage of structure in
+the environment. I did this by fitting planes to the outputs of the individual sensors,
+and then finding the transform between those planes. This process can be done with
+a single scan from each sensor, provided that both can see three independent planes that sufficiently constrain the problem.</p>
+
+<p><img src="/assets/media/calibration/pre.png" alt="" width="80%" /></p>
+
+<p><em>Two lidar scans overlayed on each other without proper extrinsics</em></p>
+
+<p><img src="/assets/media/calibration/planes1.png" alt="" width="40%" />
+<img src="/assets/media/calibration/planes2.png" alt="" width="40%" /></p>
+
+<p><em>The two scans with their corresponding planes</em></p>
+
+<p><img src="/assets/media/calibration/cal2.png" alt="" width="40%" />
+<img src="/assets/media/cal_preview.png" alt="" width="40%" /></p>
+
+<p><em>The resulting calibration</em></p>]]></content><author><name>Matthew Sivaprakasam</name><email>msivapra@andrew.cmu.edu</email></author><category term="Class" /><summary type="html"><![CDATA[A simple approach to lidar extrinsics calibration using plane fitting]]></summary></entry><entry><title type="html">Baby Driver</title><link href="http://localhost:4000/projects/baby-driver.html" rel="alternate" type="text/html" title="Baby Driver" /><published>2018-05-03T00:00:00-04:00</published><updated>2018-05-03T00:00:00-04:00</updated><id>http://localhost:4000/projects/baby_driver</id><content type="html" xml:base="http://localhost:4000/projects/baby-driver.html"><![CDATA[<!-- *  Perception and high-level control system for drone to detect, track, and follow a person with onboard camera) -->
+<!-- *  Uses Google's Posenet and hand-designed subject-visibility metrics -->
+
+<!-- <p> preview excerpt </p> -->
+<!-- - Bullet -->
+
+<!--more-->
+
+<p>For my senior capstone project at Pitt, I helped develop a novel push-assist system that can be attached to many off-the-shelf strollers at an affordable price. In addition to making it easier to push, it features a throttle, grip sensors, temperature sensor (for child safety), and obstacle avoidance.</p>
+
+<p><img src="/assets/media/stroller/mechanism.png" alt="" width="80%" /></p>
+
+<p><em>Custom setup to drive the wheels using attached motors.</em></p>
+
+<p><img src="/assets/media/stroller/app.png" alt="" width="80%" />
+<em>Companion app</em></p>]]></content><author><name>Matthew Sivaprakasam</name><email>msivapra@andrew.cmu.edu</email></author><category term="Class" /><summary type="html"><![CDATA[Smart baby stroller with push assist, obstacle avoidance, and more! Senior capstone project at Pitt.]]></summary></entry><entry><title type="html">PianoPal</title><link href="http://localhost:4000/projects/pianopal.html" rel="alternate" type="text/html" title="PianoPal" /><published>2018-05-01T00:00:00-04:00</published><updated>2018-05-01T00:00:00-04:00</updated><id>http://localhost:4000/projects/piano</id><content type="html" xml:base="http://localhost:4000/projects/pianopal.html"><![CDATA[<!-- *  Perception and high-level control system for drone to detect, track, and follow a person with onboard camera) -->
+<!-- *  Uses Google's Posenet and hand-designed subject-visibility metrics -->
+
+<!-- <p> preview excerpt </p> -->
+<!-- - Bullet -->
+
+<!--more-->
+
+<p>In “The Art of Making”, a human-centered design class at Pitt, my capstone project group addressed the fact that many people that haven’t learned to play piano are discouraged from doing so because of time constraints, lack of coordination, or simply because they don’t think that they can. We attempted to tackle this problem by designing a product that simplifies the piano-learning experience in a fun and engaging way. You can read more about it
+<a href="https://pianopal68461171.wordpress.com" target="_blank"> <b> here</b></a> or take a look at the code I wrote <a href="https://github.com/Matthewjsiv/Neopixel-guitar-hero" target="_blank"> <b> here</b></a>.</p>
+
+<!-- <p float="left"> -->
+<!-- ![TeXt Theme](/assets/media/pianopal.jpg){: width="43%" height="300px"} -->
+<iframe src="https://www.youtube.com/embed/qgHh-X5zVpc" width="70%" height="290px" allowfullscreen=""></iframe>
+<p><img src="/assets/media/pianopal.jpg" style="width:70%; height:300px" />
+<!-- <img src="/assets/media/pianopal.jpg" style="width:45%; height:290px"> -->
+<!-- <img src="/assets/media/pianopal.jpg" style="width:43%; height:300px; margin-bottom:0px"> -->
+<!-- <iframe src="https://www.youtube.com/embed/qgHh-X5zVpc" width="33%" height="300px" allowfullscreen></iframe> -->
+<!-- </p> --></p>]]></content><author><name>Matthew Sivaprakasam</name><email>msivapra@andrew.cmu.edu</email></author><category term="Personal" /><summary type="html"><![CDATA[Learn to play piano, guitar hero style!]]></summary></entry></feed>
