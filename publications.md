@@ -22,7 +22,7 @@ cover: /docs/assets/images/axure/articles-item-cover-excerpt-readmore-info.jpg
 <!-- <a class="button button--outline-info button--rounded" href="https://arxiv.org/pdf/2311.00815.pdf" target="_blank"><i class="ai ai-arxiv"></i></a> -->
 <!-- <a class="button button--outline-info button--rounded" href="https://youtu.be/qOU5gI7JshI" target="_blank"><i class="fa-brands fa-youtube fa-1x"></i></a> -->
 <a class="button button--outline-info button--rounded" href="https://github.com/castacks/tartan_drive_2.0" target="_blank"><i class="fa-brands fa-github"></i></a>
-<a class="button button--outline-warning button--rounded" href="https://matthewjsiv.github.io/tdrive_test.github.io/"><i class="fa-solid fa-laptop-code"></i>  Paper Website
+<a class="button button--outline-warning button--rounded" href="https://theairlab.org/TartanDrive2"><i class="fa-solid fa-laptop-code"></i>  Paper Website
 </a>
 </li>
   <!-- <li>"<a href="https://arxiv.org/pdf/2311.00815.pdf" style="font-size: 1.2rem" target="_blank">PIAug - Physics Informed Augmentation for Learning Vehicle Dynamics for Off-Road Navigation (In Submission)</a>," Parv Maheshwari, Wenshan Wang, Samuel Triest, <b>Matthew Sivaprakasam</b>, Shubhra Aich, John Rogers, Jason Gregory, Sebastian Scherer, <em>International Conference on Robotics and Automation 2024</em>. <br />
