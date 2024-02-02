@@ -22,15 +22,15 @@ cover: /docs/assets/images/axure/articles-item-cover-excerpt-readmore-info.jpg
 <!-- <a class="button button--outline-info button--rounded" href="https://arxiv.org/pdf/2311.00815.pdf" target="_blank"><i class="ai ai-arxiv"></i></a> -->
 <!-- <a class="button button--outline-info button--rounded" href="https://youtu.be/qOU5gI7JshI" target="_blank"><i class="fa-brands fa-youtube fa-1x"></i></a> -->
 <a class="button button--outline-info button--rounded" href="https://github.com/castacks/tartan_drive_2.0" target="_blank"><i class="fa-brands fa-github"></i></a>
-<a class="button button--outline-warning button--rounded" href="https://matthewjsiv.github.io/tdrive_test.github.io/"><i class="fa-solid fa-laptop-code"></i>  Paper Website
+<a class="button button--outline-warning button--rounded" href="https://theairlab.org/TartanDrive2"><i class="fa-solid fa-laptop-code"></i>  Paper Website
 </a>
 </li>
   <!-- <li>"<a href="https://arxiv.org/pdf/2311.00815.pdf" style="font-size: 1.2rem" target="_blank">PIAug - Physics Informed Augmentation for Learning Vehicle Dynamics for Off-Road Navigation (In Submission)</a>," Parv Maheshwari, Wenshan Wang, Samuel Triest, <b>Matthew Sivaprakasam</b>, Shubhra Aich, John Rogers, Jason Gregory, Sebastian Scherer, <em>International Conference on Robotics and Automation 2024</em>. <br />
 <a class="button button--outline-info button--rounded" href="https://arxiv.org/pdf/2311.00815.pdf" target="_blank"><i class="ai ai-arxiv"></i></a>
 </li> -->
-  <li>"<a href="" style="font-size: 1.2rem" target="_blank">Fast and Modular Autonomy Software for Autonomous Racing Vehicles</a>,"Andrew Saba, Aderotimi Adetunji, Adam Johnson, Aadi Kothari, <b>Matthew Sivaprakasam</b>, Joshua Spisak, ... Sebastian Scherer, Deva Ramanan, <em>Journal of Field Robotics Volume 3, 2023</em>. <br />
+  <li>"<a href="" style="font-size: 1.2rem" target="_blank">Fast and Modular Autonomy Software for Autonomous Racing Vehicles</a>,"Andrew Saba, Aderotimi Adetunji, Adam Johnson, Aadi Kothari, <b>Matthew Sivaprakasam</b>, Joshua Spisak, ... Sebastian Scherer, Deva Ramanan, <em>Journal of Field Robotics Volume 4, 2024</em>. <br />
 <!-- [[PDF](https://openaccess.thecvf.com/content/CVPR2023/papers/Wang_PyPose_A_Library_for_Robot_Learning_With_Physics-Based_Optimization_CVPR_2023_paper.pdf)] [[Video](https://youtu.be/XDtUDIWuGng)] [[Code](https://github.com/pypose/pypose)] -->
-<a class="button button--outline-warning button--rounded" href="" target="_blank"><i class="fa-solid fa-laptop-code"></i>  Link Coming Soon
+<a class="button button--outline-info button--rounded" href="https://fieldrobotics.net/Field_Robotics/Volume_4_files/Vol4_01.pdf" target="_blank"><i class="fa-regular fa-file-pdf"></i></a>
 </a></li>
 <li>"<a href="https://openreview.net/forum?id=7Y1pnhFJUT" style="font-size: 1.2rem" target="_blank">TartanDrive 1.5: Improving Large Multmodal Robotics Dataset Collection and Distribution</a>," <b>Matthew Sivaprakasam</b>, Samuel Triest, Mateo Guaman Castro, Micah Nye, Mukhtar Maulimov, Cherie Ho, Parv Maheshwari, Wenshan Wang, Sebastian Scherer, <em>International Conference on Robotics and Automation 2023, Workshop on Pretraining for Robotics</em>. <br />
 <!-- [[Code](https://github.com/ashimas11/python-metar)] -->
